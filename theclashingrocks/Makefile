@@ -1,13 +1,4 @@
 
-# Copyright (C) 2008 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-# $Id$
-
-include $(TOPDIR)/rules.mk
-
 # Copyright (C) [2011] [TheClashingRocks.org]
 #
 # Authors: Antonio Kheirkhahzadeh <antoniodariush@gmail.com> Jiva Bagale <jnbagale@gmail.com>
@@ -17,6 +8,9 @@ include $(TOPDIR)/rules.mk
 # See /LICENSE for more information.
 #
 # 
+
+include $(TOPDIR)/rules.mk
+
 PKG_NAME:=tcr
 PKG_VERSION:=0.0.1
 
