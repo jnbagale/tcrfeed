@@ -1,0 +1,12 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1,6 +1,6 @@
+-SUBDIRS=stdutil daemon docs libspread examples 
+-INSTALLSUBDIRS=daemon docs libspread examples
+-BINSUBDIRS=daemon libspread examples
++SUBDIRS=stdutil daemon docs libspread
++INSTALLSUBDIRS=daemon docs libspread
++BINSUBDIRS=daemon libspread
+ 
+ all: $(SUBDIRS) 
+ 	for dir in $(SUBDIRS); do \

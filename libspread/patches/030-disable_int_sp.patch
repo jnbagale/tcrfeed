@@ -1,0 +1,22 @@
+--- a/include/sp.h
++++ b/include/sp.h
+@@ -41,8 +41,8 @@
+ extern "C" {
+ #endif
+ 
+-#define 	int16	short
+-#define		int32	int
++  //#define 	int16	short
++  //#define		int32	int
+ 
+ #define		Flip_int16( type )	( ( (type >> 8) & 0x00ff) | ( (type << 8) & 0xff00) )
+ 
+@@ -145,7 +145,7 @@ typedef	struct	dummy_scatter{
+ } scatter;
+ 
+ typedef struct	dummy_group_id {
+-	int32		id[3];
++	int		id[3];
+ } group_id;
+ 
+ typedef struct dummy_vs_set_info {

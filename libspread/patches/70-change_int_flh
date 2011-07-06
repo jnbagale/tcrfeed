@@ -1,0 +1,147 @@
+--- a/libspread/fl.c
++++ b/libspread/fl.c
+@@ -305,14 +305,14 @@ int FL_flush(mailbox mbox, const char *g
+ 
+ int FL_scat_subgroupcast(mailbox mbox, service serv_type, const char *grp,
+ 				int num_recvrs, char recvrs[][MAX_GROUP_NAME],
+-				int16 mess_type, const scatter *scat) {
++				short mess_type, const scatter *scat) {
+   return FL_int_scat_multicast(mbox, serv_type | SUBGROUP_CAST, grp, 
+ 			       num_recvrs, recvrs, mess_type, scat);
+ }
+ 
+ int FL_subgroupcast(mailbox mbox, service serv_type, const char *grp,
+ 			   int num_recvrs, char recvrs[][MAX_GROUP_NAME],
+-			   int16 mess_type, int mess_len, const char *mess) {
++			   short mess_type, int mess_len, const char *mess) {
+   scatter msg;
+ 
+   msg.num_elements    = 1;
+@@ -323,13 +323,13 @@ int FL_subgroupcast(mailbox mbox, servic
+ }
+ 
+ int FL_scat_unicast(mailbox mbox, service serv_type, const char *grp, const char *recvr, 
+-			   int16 mess_type, const scatter *scat) {
++			   short mess_type, const scatter *scat) {
+   return FL_scat_subgroupcast(mbox, serv_type, grp, 1, (char(*)[MAX_GROUP_NAME]) recvr, 
+ 			      mess_type, scat);
+ }
+ 
+ int FL_unicast(mailbox mbox, service serv_type, const char *grp, const char *recvr, 
+-		      int16 mess_type, int mess_len, const char *mess) {
++		      short mess_type, int mess_len, const char *mess) {
+   scatter msg;
+ 
+   msg.num_elements    = 1;
+@@ -340,12 +340,12 @@ int FL_unicast(mailbox mbox, service ser
+ }
+ 
+ int FL_scat_multicast(mailbox mbox, service serv_type, const char *grp,
+-			     int16 mess_type, const scatter *scat) {
++			     short mess_type, const scatter *scat) {
+   return FL_int_scat_multicast(mbox, serv_type & ~SUBGROUP_CAST, grp, 0, 0, mess_type, scat);
+ }
+ 
+ int FL_multicast(mailbox mbox, service serv_type, const char *grp,
+-			int16 mess_type, int mess_len, const char *mess) {
++			short mess_type, int mess_len, const char *mess) {
+   scatter msg;
+ 
+   msg.num_elements    = 1;
+@@ -356,7 +356,7 @@ int FL_multicast(mailbox mbox, service s
+ }
+ 
+ int FL_scat_receive(mailbox mbox, service *serv_type, char *sender, int max_groups, 
+-			   int *num_groups, char groups[][MAX_GROUP_NAME], int16 *mess_type,
++			   int *num_groups, char groups[][MAX_GROUP_NAME], short *mess_type,
+ 			   int *endian_mismatch, scatter *scat_mess, int *more_messes) {
+   int blocking = (*serv_type & DONT_BLOCK) == 0;              /* user not using DONT_BLOCK */ 
+   gc_recv_mess msg;                                    /* used to contain user's parameters */
+@@ -466,7 +466,7 @@ int FL_scat_receive(mailbox mbox, servic
+ }
+ 
+ int FL_receive(mailbox mbox, service *serv_type, char *sender, int max_groups, 
+-		      int *num_groups, char groups[][MAX_GROUP_NAME], int16 *mess_type, 
++		      int *num_groups, char groups[][MAX_GROUP_NAME], short *mess_type, 
+ 		      int *endian_mismatch, int max_mess_len, char *mess, int *more_messes) {
+   scatter msg;
+ 
+@@ -519,7 +519,7 @@ void FL_error(int err) { 
+     printf("FL_error: (%d) Function call would have blocked.\n", err);
+     break;
+   case ILLEGAL_MESSAGE_TYPE:
+-    printf("FL_error: (%d) Illegal message type (int16) used, "
++    printf("FL_error: (%d) Illegal message type (short) used, "
+ 	   "value < FL_MIN_LEGAL_MESS_TYPE(%d).\n", err, FL_MIN_LEGAL_MESS_TYPE);
+     break;
+   case ILLEGAL_STATE:
+@@ -546,7 +546,7 @@ int FL_get_num_vs_offset_memb_mess(void)
+ 
+ int FL_get_vs_set_offset_memb_mess(void)
+ {
+-  return sizeof(group_id) + sizeof(int32);
++  return sizeof(group_id) + sizeof(int);
+ }
+ 
+ /************************************ private interface ****************************************/
+@@ -695,7 +695,7 @@ static void free_view(view *v) {
+ }
+ 
+ static void fill_view(view *v, service memb_type, int num_membs, 
+-		      char (*membs)[MAX_GROUP_NAME], int16 index) {
++		      char (*membs)[MAX_GROUP_NAME], short index) {
+   size_t byte_size = num_membs * MAX_GROUP_NAME;
+ 
+   DEBUG(std_stkfprintf(stderr, 1, "fill_view: view %p, serv 0x%X, num_membs %d, index %d\n",
+@@ -1108,7 +1108,7 @@ static int FL_int_flush(fl_conn *conn, f
+ 
+ static int FL_int_scat_multicast(mailbox mbox, service serv_type, const char *grp,
+ 					int num_recvrs, char recvrs[][MAX_GROUP_NAME],
+-					int16 mess_type, const scatter *user_scat) {
++					short mess_type, const scatter *user_scat) {
+   fl_conn *conn;
+   fl_group *group = 0;
+   int grp_not_priv;                                           /* is grp not a private group ? */
+@@ -1117,7 +1117,7 @@ static int FL_int_scat_multicast(mailbox
+   int fix_scat = 0;                                           /* did I modify the user's scat? */
+   scatter *scat = (scatter*) user_scat;                           /* get rid of const warnings */
+   scat_element senders_elem = { 0 };           /* for copy of user's element I might overwrite */
+-  char copy_buf[sizeof(group_id) + sizeof(int16) + MAX_GROUP_NAME];           /* append buffer */
++  char copy_buf[sizeof(group_id) + sizeof(short) + MAX_GROUP_NAME];           /* append buffer */
+   char *curr_ptr = copy_buf, *key;                             /* current pos in append buffer */
+ 
+   DEBUG( /* debug print out user's parameters */
+@@ -1153,8 +1153,8 @@ static int FL_int_scat_multicast(mailbox
+       if (grp_not_priv && is_vulnerable_mess(group, serv_type)) { /* mess type, current fl vid */
+ 	DEBUG(std_stkfprintf(stderr, 0, "Sending a vulnerable message!\n"));
+ 	fix_scat = 1;
+-	memcpy(curr_ptr, &mess_type, sizeof(int16));
+-	curr_ptr += sizeof(int16);
++	memcpy(curr_ptr, &mess_type, sizeof(short));
++	curr_ptr += sizeof(short);
+ 	memcpy(curr_ptr, &group->fl_view->gid, sizeof(group_id));
+ 	curr_ptr += sizeof(group_id);
+ 	mess_type = VULNERABLE_MESS;
+@@ -1413,16 +1413,16 @@ static int FL_int_receive(gc_recv_mess *
+ 
+ 	/* VULNERABLE msgs also have the original user's msg type appended */
+ 	if (*m->mess_type == VULNERABLE_MESS) { 
+-	  assert(m->ret >= sizeof(int16));                               /* ensure fully recvd */
+-	  m->ret -= sizeof(int16);                          /* correct to ignore the appendage */
++	  assert(m->ret >= sizeof(short));                               /* ensure fully recvd */
++	  m->ret -= sizeof(short);                          /* correct to ignore the appendage */
+ 	  
+ 	  m->vulnerable = 1;                                           /* mark m as vulnerable */
+ 
+ 	  /* here should already be seeked to end */
+-	  err = scatp_jbackward(&pos, sizeof(int16));              /* move back from end again */
+-	  assert(err == sizeof(int16));	  
+-	  err = scatp_cpy1((char*) m->mess_type, &pos, sizeof(int16));    /* cpy out mess type */
+-	  assert(err == sizeof(int16));
++	  err = scatp_jbackward(&pos, sizeof(short));              /* move back from end again */
++	  assert(err == sizeof(short));	  
++	  err = scatp_cpy1((char*) m->mess_type, &pos, sizeof(short));    /* cpy out mess type */
++	  assert(err == sizeof(short));
+ 	  
+ 	  /* endian correct the message type if necessary */
+ 	  if (*m->endian_mismatch != 0)
