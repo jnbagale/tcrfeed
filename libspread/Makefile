@@ -13,7 +13,7 @@ PKG_NAME:=spread-src
 PKG_VERSION:=4.1.0
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://10.51.180.21/tarballs
+PKG_SOURCE_URL:=http://theclashingrocks.org/tarballs
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
