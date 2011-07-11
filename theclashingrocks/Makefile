@@ -12,7 +12,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tcr
-PKG_VERSION:=0.0.2
+PKG_VERSION:=0.0.3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://theclashingrocks.org/tarballs
