@@ -46,7 +46,10 @@ endef
 
 define Package/tcr/install
 	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_DIR) $(1)/usr/share/tcr
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/tcr $(1)/usr/bin/
+	$(CP) $(PKG_INSTALL_DIR)/usr/share/tcr/* $(1)/usr/share/tcr/
+
 endef
 
 $(eval $(call BuildPackage,tcr))
