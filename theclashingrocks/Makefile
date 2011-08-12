@@ -31,7 +31,7 @@ TARGET_LDFLAGS+= \
 define Package/tcr
 	SECTION:=utils
 	CATEGORY:=Utilities
-	DEPENDS:=+glib2 +libsdl +libsdl-gfx +libgsl +libuuid +libsdl-ttf +spread
+	DEPENDS:=+glib2 +libgsl +libsdl +libsdl-gfx +libsdl-image +libuuid +libsdl-ttf +spread
 	TITLE:=theclashingrocks
 endef
 

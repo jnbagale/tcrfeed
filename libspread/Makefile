@@ -21,37 +21,42 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-TARGET_LDFLAGS+= \
-		-Wl,-rpath-link=$(STAGING_DIR)/usr/lib 
 
-define Package/spread
+define Package/libspread
     TITLE:=libspread
     SECTION:=libs
+    DEPENDS:=+librt
     CATEGORY:=Libraries
     URL:=http://www.spread.org/
 endef
 
 define Package/spread/description
-    this is spread.
+    this is libspread.
+endef
+
+define Build/Configure
+	$(call Build/Configure/Default)
+endef
+
+define Build/Compile
+	$(call Build/Compile/Default)
 endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) \
-		$(1)/usr/include \
-		$(1)/usr/lib \
-		$(1)/etc
+		$(1)/usr/lib 	\
+		$(1)/usr/include 
+
 	$(CP) \
 		$(PKG_INSTALL_DIR)/usr/lib/* \
 		$(1)/usr/lib/
 	$(CP) \
 		$(PKG_INSTALL_DIR)/usr/include/* \
 		$(1)/usr/include/
-	$(CP) \
-		$(PKG_INSTALL_DIR)/etc/* \
-		$(1)/etc/
+
 endef
 
-define Package/spread/install
+define Package/libspread/install
 	$(INSTALL_DIR) \
 		$(1)/usr/lib
 
@@ -61,5 +66,4 @@ define Package/spread/install
 
 endef
 
-$(eval $(call RequireCommand,spread,$(PKG_NAME) requires spread on the host system.))
-$(eval $(call BuildPackage,spread))
+$(eval $(call BuildPackage,libspread))
