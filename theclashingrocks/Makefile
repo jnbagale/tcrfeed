@@ -12,7 +12,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tcr
-PKG_REV:=26fef3669c456ede4e5fb368576adc308e55049b
+PKG_REV:=HEAD
 PKG_VERSION:=0.0.3
 
 PKG_SOURCE_PROTO:=git
