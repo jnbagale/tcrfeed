@@ -12,15 +12,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tcr
+PKG_REV:=26fef3669c456ede4e5fb368576adc308e55049b
 PKG_VERSION:=0.0.3
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://theclashingrocks.org/tarballs
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=git://gitorious.org/the-clashing-rocks/the-clashing-rocks.git
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-
-PKG_INSTALL:=1
-
+PKG_FIXUP=git pull
+PKG_FIXUP=autoreconf
+PKG_INSTALL=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
