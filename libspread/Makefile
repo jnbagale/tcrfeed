@@ -23,6 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 
 
 define Package/libspread
+    MAINTAINER:=team@theclashingrocks.org
     TITLE:=libspread
     SECTION:=libs
     DEPENDS:=+librt

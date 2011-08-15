@@ -22,7 +22,6 @@ PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 
-PKG_FIXUP=git pull
 PKG_FIXUP=autoreconf
 PKG_INSTALL=1
 
@@ -33,10 +32,12 @@ TARGET_LDFLAGS+= \
 	-Wl,-rpath-link=$(STAGING_DIR)/usr/lib \
 
 define Package/tcr
-	SECTION:=utils
-	CATEGORY:=Utilities
-	DEPENDS:=+glib2 +libgsl +libsdl +libsdl-gfx +libsdl-image +libuuid +libsdl-ttf +spread
-	TITLE:=theclashingrocks
+    MAINTAINER:=team@theclashingrocks.org
+    TITLE:=theclashingrocks
+    SECTION:=utils
+    CATEGORY:=Utilities
+    DEPENDS:=+glib2 +libgsl +libsdl +libsdl-gfx +libsdl-image +libuuid +libsdl-ttf +libspread
+
 endef
 
 
