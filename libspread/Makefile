@@ -30,7 +30,7 @@ define Package/libspread
     URL:=http://www.spread.org/
 endef
 
-define Package/spread/description
+define Package/libspread/description
     this is libspread.
 endef
 
