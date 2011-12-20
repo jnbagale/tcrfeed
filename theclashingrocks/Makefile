@@ -13,7 +13,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tcr
 PKG_REV:=HEAD
-PKG_VERSION:=0.0.3
+PKG_VERSION:=0.0.4
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git://gitorious.org/the-clashing-rocks/the-clashing-rocks.git
