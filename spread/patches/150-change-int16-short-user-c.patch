@@ -1,0 +1,13 @@
+Index: spread-src-4.1.0/examples/user.c
+===================================================================
+--- spread-src-4.1.0.orig/examples/user.c	2011-12-20 15:16:49.043147555 +0000
++++ spread-src-4.1.0/examples/user.c	2011-12-20 15:17:06.059147391 +0000
+@@ -432,7 +432,7 @@
+         char             members[MAX_MEMBERS][MAX_GROUP_NAME];
+ 	int		 num_groups;
+ 	int		 service_type;
+-	int16		 mess_type;
++	short		 mess_type;
+ 	int		 endian_mismatch;
+ 	int		 i,j;
+ 	int		 ret;

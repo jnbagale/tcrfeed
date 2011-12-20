@@ -1,0 +1,26 @@
+Index: spread-src-4.1.0/daemon/Makefile.in
+===================================================================
+--- spread-src-4.1.0.orig/daemon/Makefile.in	2011-08-16 10:41:56.546168629 +0100
++++ spread-src-4.1.0/daemon/Makefile.in	2011-08-16 10:42:19.386168615 +0100
+@@ -101,8 +101,8 @@
+ 
+ binrelease: $(TARGETS)
+ 	$(buildtoolsdir)/mkinstalldirs ../bin/$(host)
+-	$(INSTALL) -m 0755 -s spmonitor$(EXEEXT) ../bin/$(host)/spmonitor$(EXEEXT)
+-	$(INSTALL) -m 0755 -s spread$(EXEEXT) ../bin/$(host)/spread$(EXEEXT)
++	$(INSTALL) -m 0755  spmonitor$(EXEEXT) ../bin/$(host)/spmonitor$(EXEEXT)
++	$(INSTALL) -m 0755  spread$(EXEEXT) ../bin/$(host)/spread$(EXEEXT)
+ 
+ install: $(TARGETS) install-files 
+ 
+@@ -110,8 +110,8 @@
+ 	$(buildtoolsdir)/mkinstalldirs $(DESTDIR)$(bindir)
+ 	$(buildtoolsdir)/mkinstalldirs $(DESTDIR)$(sbindir)
+ 	$(buildtoolsdir)/mkinstalldirs $(DESTDIR)$(includedir)
+-	$(INSTALL) -m 0755 -s spmonitor$(EXEEXT) $(DESTDIR)$(bindir)/spmonitor$(EXEEXT)
+-	$(INSTALL) -m 0755 -s spread$(EXEEXT) $(DESTDIR)$(sbindir)/spread$(EXEEXT)
++	$(INSTALL) -m 0755  spmonitor$(EXEEXT) $(DESTDIR)$(bindir)/spmonitor$(EXEEXT)
++	$(INSTALL) -m 0755  spread$(EXEEXT) $(DESTDIR)$(sbindir)/spread$(EXEEXT)
+ 
+ uninstallall:	uninstall
+ 	-rmdir $(DESTDIR)$(bindir)

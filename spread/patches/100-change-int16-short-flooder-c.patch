@@ -1,0 +1,13 @@
+Index: spread-src-4.1.0/examples/flooder.c
+===================================================================
+--- spread-src-4.1.0.orig/examples/flooder.c	2011-12-20 15:09:55.031151502 +0000
++++ spread-src-4.1.0/examples/flooder.c	2011-12-20 15:10:13.107151331 +0000
+@@ -72,7 +72,7 @@
+ 	int		ret;
+ 	int		service_type, num_groups;
+ 	char		sender[MAX_GROUP_NAME];
+-	int16		mess_type;
++	short		mess_type;
+ 	int		dummy_endian_mismatch;
+         int             joined_members;
+         int             sender_index;
