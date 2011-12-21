@@ -1,0 +1,32 @@
+Index: spread-src-4.1.0/examples/Makefile.in
+===================================================================
+--- spread-src-4.1.0.orig/examples/Makefile.in	2011-12-21 14:45:34.297831910 +0000
++++ spread-src-4.1.0/examples/Makefile.in	2011-12-21 14:45:58.729831064 +0000
+@@ -99,19 +99,19 @@
+ 
+ binrelease: $(TARGETS)
+ 	$(buildtoolsdir)/mkinstalldirs ../bin/$(host)
+-	$(INSTALL) -m 0755 -s spuser$(EXEEXT) ../bin/$(host)/spuser$(EXEEXT)
+-	$(INSTALL) -m 0755 -s sptuser$(EXEEXT) ../bin/$(host)/sptuser$(EXEEXT)
+-	$(INSTALL) -m 0755 -s spflooder$(EXEEXT) ../bin/$(host)/spflooder$(EXEEXT)
+-	$(INSTALL) -m 0755 -s flush_user$(EXEEXT) ../bin/$(host)/flush_user$(EXEEXT)
++	$(INSTALL) -m 0755  spuser$(EXEEXT) ../bin/$(host)/spuser$(EXEEXT)
++	$(INSTALL) -m 0755  sptuser$(EXEEXT) ../bin/$(host)/sptuser$(EXEEXT)
++	$(INSTALL) -m 0755  spflooder$(EXEEXT) ../bin/$(host)/spflooder$(EXEEXT)
++	$(INSTALL) -m 0755  flush_user$(EXEEXT) ../bin/$(host)/flush_user$(EXEEXT)
+ 
+ install: $(TARGETS) install-files
+ 
+ install-files:
+ 	$(buildtoolsdir)/mkinstalldirs $(DESTDIR)$(bindir)
+-	$(INSTALL) -m 0755 -s spuser$(EXEEXT) $(DESTDIR)$(bindir)/spuser$(EXEEXT)
+-	$(INSTALL) -m 0755 -s sptuser$(EXEEXT) $(DESTDIR)$(bindir)/sptuser$(EXEEXT)
+-	$(INSTALL) -m 0755 -s spflooder$(EXEEXT) $(DESTDIR)$(bindir)/spflooder$(EXEEXT)
+-	$(INSTALL) -m 0755 -s flush_user$(EXEEXT) $(DESTDIR)$(bindir)/flush_user$(EXEEXT)
++	$(INSTALL) -m 0755  spuser$(EXEEXT) $(DESTDIR)$(bindir)/spuser$(EXEEXT)
++	$(INSTALL) -m 0755  sptuser$(EXEEXT) $(DESTDIR)$(bindir)/sptuser$(EXEEXT)
++	$(INSTALL) -m 0755  spflooder$(EXEEXT) $(DESTDIR)$(bindir)/spflooder$(EXEEXT)
++	$(INSTALL) -m 0755  flush_user$(EXEEXT) $(DESTDIR)$(bindir)/flush_user$(EXEEXT)
+ 
+ uninstallall:	uninstall
+ 	-rmdir $(DESTDIR)$(bindir)
