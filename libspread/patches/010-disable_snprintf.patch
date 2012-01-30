@@ -1,0 +1,11 @@
+--- a/configure
++++ b/configure
+@@ -5825,7 +5825,7 @@ done
+ 
+ 
+ 
+-for ac_func in bcopy inet_aton inet_ntoa inet_ntop memmove setsid snprintf strerror lrand48
++for ac_func in bcopy inet_aton inet_ntoa inet_ntop memmove setsid strerror lrand48
+ do
+ as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ { $as_echo "$as_me:$LINENO: checking for $ac_func" >&5
