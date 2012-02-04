@@ -14,7 +14,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=guile
-PKG_VERSION:=2.0.2
+PKG_VERSION:=2.0.5
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://ftp.gnu.org/gnu/guile/
